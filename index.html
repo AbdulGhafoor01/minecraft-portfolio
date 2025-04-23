@@ -1,41 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AbdulGhafoor - Minecraft Server Developer Portfolio</title>
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --bg-light: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+      --bg-dark: linear-gradient(135deg, #0f172a, #1e293b);
+      --text-light: #333;
+      --text-dark: #f9fafb;
+      --section-bg-light: #ffffff;
+      --section-bg-dark: #1f2937;
+      --shadow-light: rgba(0, 0, 0, 0.1);
+      --shadow-dark: rgba(255, 255, 255, 0.1);
     }
+
+    [data-theme="dark"] body {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       margin: 0;
       padding: 40px;
-      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-      color: #333;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.5s ease, color 0.5s ease;
     }
     h1 {
-      color: #111827;
+      color: inherit;
       font-size: 2.8em;
       text-align: center;
       animation: fadeIn 1s ease-in-out;
     }
     h2, h3 {
-      color: #1f2937;
+      color: inherit;
       margin-top: 20px;
       animation: slideIn 0.6s ease forwards;
     }
     .section {
-      background: #ffffff;
+      background: var(--section-bg-light);
       padding: 30px;
       margin: 30px auto;
       max-width: 900px;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 20px var(--shadow-light);
       animation: slideUp 0.8s ease;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+    }
+    [data-theme="dark"] .section {
+      background: var(--section-bg-dark);
+      box-shadow: 0 8px 20px var(--shadow-dark);
     }
     .section:hover {
       transform: translateY(-4px);
@@ -70,7 +88,7 @@
     footer {
       text-align: center;
       margin-top: 50px;
-      color: #6b7280;
+      color: inherit;
       font-size: 0.9em;
       animation: fadeIn 2s ease-in;
     }
@@ -86,9 +104,31 @@
       from { transform: translateX(-30px); opacity: 0; }
       to { transform: translateX(0); opacity: 1; }
     }
+    .theme-toggle {
+      display: flex;
+      justify-content: center;
+      margin-top: -30px;
+      margin-bottom: 30px;
+    }
+    .theme-toggle button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #3b82f6;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .theme-toggle button:hover {
+      background: #2563eb;
+    }
   </style>
 </head>
 <body>
+  <div class="theme-toggle">
+    <button onclick="toggleTheme()">Toggle Theme</button>
+  </div>
   <h1>AbdulGhafoor</h1>
   <p style="text-align:center;"><strong>Role:</strong> Minecraft Server Developer & Owner<br>
   <strong>Discord:</strong> abdulghafoor<br>
@@ -143,5 +183,13 @@
   <footer>
     © 2025 AbdulGhafoor | Minecraft Server Developer Portfolio. All rights reserved.
   </footer>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    }
+  </script>
 </body>
 </html>
