@@ -20,9 +20,15 @@ body {
     transition: background 0.5s ease, color 0.5s ease;
 }
 
-[data-theme="light"] body {
+/* Apply light theme styles when the data-theme attribute is 'light' on the html element */
+html[data-theme="light"] body {
     background: var(--bg-light);
     color: var(--text-light);
+}
+
+html[data-theme="light"] .section {
+    background: var(--section-bg-dark); /* Corrected: Should be light background for light theme sections */
+    box-shadow: 0 8px 20px var(--shadow-dark); /* Corrected: Should be light shadow for light theme sections */
 }
 
 h1 {
@@ -39,17 +45,18 @@ h2, h3 {
 }
 
 .section {
-    background: var(--section-bg-light);
+    background: var(--section-bg-light); /* Default section background is light */
     padding: 30px;
     margin: 30px auto;
     max-width: 900px;
     border-radius: 12px;
-    box-shadow: 0 8px 20px var(--shadow-light);
+    box-shadow: 0 8px 20px var(--shadow-light); /* Default section shadow is light */
     animation: slideUp 0.8s ease;
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
 }
 
-[data-theme="light"] .section {
+/* Apply dark theme styles to sections when the data-theme attribute is 'dark' */
+html[data-theme="dark"] .section {
     background: var(--section-bg-dark);
     box-shadow: 0 8px 20px var(--shadow-dark);
 }
