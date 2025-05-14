@@ -7,6 +7,12 @@
     --section-bg-dark: #1f2937;
     --shadow-light: rgba(0, 0, 0, 0.1);
     --shadow-dark: rgba(255, 255, 255, 0.1);
+    --input-bg-light: #f7f7f7;
+    --input-bg-dark: #2d3748;
+    --input-text-light: #333;
+    --input-text-dark: #f9fafb;
+    --border-light: #ddd;
+    --border-dark: #4a5568;
 }
 
 body {
@@ -24,11 +30,6 @@ body {
 html[data-theme="light"] body {
     background: var(--bg-light);
     color: var(--text-light);
-}
-
-html[data-theme="light"] .section {
-    background: var(--section-bg-dark); /* Corrected: Should be light background for light theme sections */
-    box-shadow: 0 8px 20px var(--shadow-dark); /* Corrected: Should be light shadow for light theme sections */
 }
 
 h1 {
@@ -142,16 +143,104 @@ footer {
     background: #2563eb;
 }
 
-/* Review Styles */
-.review {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
+/* Review Section Styles */
+#reviews-section h3 {
+    margin-top: 30px;
 }
 
-.verified {
+#reviews-section input[type="text"],
+#reviews-section select,
+#reviews-section textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    background-color: var(--input-bg-light);
+    color: var(--input-text-light);
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+    box-sizing: border-box;
+}
+
+html[data-theme="dark"] #reviews-section input[type="text"],
+html[data-theme="dark"] #reviews-section select,
+html[data-theme="dark"] #reviews-section textarea {
+    border-color: var(--border-dark);
+    background-color: var(--input-bg-dark);
+    color: var(--input-text-dark);
+}
+
+#reviews-section textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+#reviews-section button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #4caf50;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#reviews-section button:hover {
+    background-color: #45a049;
+}
+
+#reviews-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.review {
+    border: 1px solid var(--border-light);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    background-color: var(--section-bg-light);
+    color: var(--text-light);
+    transition: border-color 0.3s, background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+html[data-theme="dark"] .review {
+    border-color: var(--border-dark);
+    background-color: var(--section-bg-dark);
+    color: var(--text-dark);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+}
+
+.review h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: inherit;
+}
+
+.review .verified {
     color: green;
     font-size: 0.8em;
     margin-left: 5px;
+}
+
+.review p {
+    margin-bottom: 10px;
+}
+
+.review button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.review button:hover {
+    background-color: #d32f2f;
 }
